@@ -1,0 +1,50 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+int N;
+int QueenPos[50];//存储已经摆好的位置
+
+void NQueen(int k)//0-(k-1)已经摆好的情况下，摆k行及其后的queen 
+{
+	int i;
+	if(k==N)
+	{
+		for(i=0;i<N;i++)
+		{
+			cout<<QueenPos[i]+1<<"\t";//输出queen位置 
+		}
+		cout<<"\n";	
+	} 
+	
+	for(i=0;i<N;i++)
+	{
+		int j;
+		for(j=0;j<k;j++)
+		{
+			if(QueenPos[j]==i||abs(QueenPos[j]-i)==abs(k-j))//判断是否可行 
+			{
+				break;
+			}
+		}
+		
+		if(j==k)
+		{
+			QueenPos[k]=i;
+			NQueen(k+1);
+		}
+	}
+	
+}
+
+int main()
+{
+	
+	
+	cin>>N;
+	NQueen(0);
+
+	
+	
+	return 0;
+	
+} 
